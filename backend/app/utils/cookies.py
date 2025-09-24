@@ -1,0 +1,14 @@
+from typing import Annotated
+
+from app.api.auth.schemas import TokensTuple
+from fastapi import Cookie
+from fastapi.exceptions import HTTPException
+
+
+def get_tokens_cookies(
+    access_token: Annotated[str | None, Cookie()] = None,
+    refresh_token: Annotated[str | None, Cookie()] = None,
+) -> TokensTuple:
+    if not access_token or not refresh_token:
+        raise HTTPException(status_code=401, detail="Missing tokens")
+    return TokensTuple(access_token=access_token, refresh_token=refresh_token)
