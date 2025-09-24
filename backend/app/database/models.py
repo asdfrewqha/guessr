@@ -27,7 +27,7 @@ class User(TimestampsMixin, Base):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, unique=True, nullable=False)
     name: Mapped[str] = mapped_column(String(100), nullable=True)
     username: Mapped[str] = mapped_column(String, unique=True, nullable=True)
-    role = Mapped[Role] = mapped_column(Enum(Role), default=Role.USER)
+    role: Mapped[Role] = mapped_column(Enum(Role), default=Role.USER)
     notifications_bool: Mapped[bool] = mapped_column(Boolean, default=True)
     firstname: Mapped[str] = mapped_column(String, nullable=True)
     surname: Mapped[str] = mapped_column(String, nullable=True)
