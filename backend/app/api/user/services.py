@@ -74,6 +74,7 @@ class PanoService:
         async with self.db.db_session() as session:
             user = await self._check_user(user_id, session)
             level = await session.execute(select(self.level).where(self.level.id == guess.level))
+            level = level.scalar_one_or_none()
             if level:
                 await session.execute(
                     update(self.user).where(self.user.id == user_id).values(count=user.count + 1)

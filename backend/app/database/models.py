@@ -35,7 +35,7 @@ class User(TimestampsMixin, Base):
     completed: Mapped[int] = mapped_column(Integer, default=0)
     count: Mapped[int] = mapped_column(Integer, default=0)
 
-    levels = relationship("Active", back_populates="user", cascade="all, delete-orphan")
+    levels = relationship("Inactive", back_populates="user", cascade="all, delete-orphan")
 
 
 class Level(Base):

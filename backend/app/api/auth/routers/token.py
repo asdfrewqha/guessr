@@ -13,7 +13,7 @@ async def telegram_auth(
     service: Annotated[UserService, Depends(UserService)], initData: str = Form(...)
 ):
     tokens = await service.login(InitData(initData=initData))
-    response = JSONResponse({"message": tokens[1], "status": "success"})
+    response = JSONResponse({"message": str(tokens[1]), "status": "success"})
     response.set_cookie(
         "access_token",
         tokens[0].access_token,
