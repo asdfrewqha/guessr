@@ -14,7 +14,7 @@ echo "Waiting for $host:$port ..."
 
 while ! nc -z "$host" "$port"; do
   echo "Still waiting for $host:$port ..."
-  sleep 1
+  sleep 5
 done
 
 echo "$host:$port is available. Running command: $cmd"

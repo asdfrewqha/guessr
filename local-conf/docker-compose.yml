@@ -15,7 +15,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "5432:5432"
     deploy:
       resources:
         limits:
@@ -129,6 +129,20 @@ services:
       - backend_net
     restart: always
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./pgadmin/servers.json:/pgadmin4/servers.json
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      - backend_net
 
 networks:
   nginx_net:
@@ -139,3 +153,4 @@ networks:
 volumes:
   postgres_data:
   redis_data:
+  pgadmin_data:
