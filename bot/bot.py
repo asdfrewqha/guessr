@@ -4,16 +4,16 @@ import logging
 
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
-from core.config import BOT_TOKEN, REDIS_URL
+from core.config import BOT_TOKEN
 from core.handlers import router
-from redis.asyncio import Redis
+from utils.redis import redis
 
 logger = logging.getLogger(__name__)
+
 dp = Dispatcher()
 dp.include_router(router=router)
 
 bot = Bot(BOT_TOKEN)
-redis = Redis.from_url(REDIS_URL, decode_responses=True)
 
 
 async def redis_subscriber():

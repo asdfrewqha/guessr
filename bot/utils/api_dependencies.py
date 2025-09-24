@@ -9,8 +9,7 @@ from urllib.parse import urlencode
 import aiohttp
 from core.config import BACKEND_URL, BOT_TOKEN
 from redis import Redis
-
-from bot import redis
+from utils.redis import redis
 
 
 def generate_secure_code(length: int = 6) -> str:

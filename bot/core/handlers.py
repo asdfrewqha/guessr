@@ -9,8 +9,7 @@ from aiohttp import ClientSession
 from core.config import ADMIN_ID, BACKEND_URL
 from core.keyboards import inline_miniapp_kbd
 from utils.api_dependencies import generate_secure_code, get_access_cookies
-
-from bot import redis
+from utils.redis import redis
 
 router = Router()
 
